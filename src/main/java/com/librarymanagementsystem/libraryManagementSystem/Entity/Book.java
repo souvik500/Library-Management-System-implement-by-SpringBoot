@@ -1,5 +1,6 @@
 package com.librarymanagementsystem.libraryManagementSystem.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.librarymanagementsystem.libraryManagementSystem.Enum.Genres;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,5 +30,6 @@ public class Book
     //child to parent connection
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     Author author;
 }

@@ -23,6 +23,7 @@ public class Student
 
     private int age;
 
+    @Column(unique = true)
     private String Email;
 
     @Enumerated(EnumType.STRING)

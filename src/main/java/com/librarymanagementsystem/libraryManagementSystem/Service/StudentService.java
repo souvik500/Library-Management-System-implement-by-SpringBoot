@@ -1,5 +1,7 @@
 package com.librarymanagementsystem.libraryManagementSystem.Service;
 
+import com.librarymanagementsystem.libraryManagementSystem.DTO.StudentResponseDTO;
+import com.librarymanagementsystem.libraryManagementSystem.DTO.StudentUpdateEmail_RequestDTO;
 import com.librarymanagementsystem.libraryManagementSystem.Entity.LibraryCard;
 import com.librarymanagementsystem.libraryManagementSystem.Entity.Student;
 import com.librarymanagementsystem.libraryManagementSystem.Enum.Status;
@@ -24,5 +26,33 @@ public class StudentService
         student.setLibraryCard(lb);
 
         studentRepository.save(student); //Then save to `lms` Database
+    }
+
+
+
+//    public String findStudentByEmail(String emailId)
+//    {
+//        Student student = studentRepository.findByEmail(emailId);
+//
+//        return student.getName();
+//    }
+
+
+    public StudentResponseDTO updateMobNo(StudentUpdateEmail_RequestDTO studentUpdateMobRequestDTO)
+    {
+        Student student = studentRepository.findById(studentUpdateMobRequestDTO.getId()).get();
+
+        student.setEmail(studentUpdateMobRequestDTO.getEmail());
+
+        Student updateStudent = studentRepository.save(student);
+
+        //Convert update Student to response DTO
+        StudentResponseDTO studentResponseDTO = new StudentResponseDTO();
+
+        studentResponseDTO.setId(updateStudent.getId());
+        studentResponseDTO.setEmail(updateStudent.getEmail());
+        studentResponseDTO.setName(updateStudent.getName());
+
+        return studentResponseDTO;
     }
 }
