@@ -1,5 +1,7 @@
 package com.librarymanagementsystem.libraryManagementSystem.Controller;
 
+import com.librarymanagementsystem.libraryManagementSystem.DTO.BookRequestDTO;
+import com.librarymanagementsystem.libraryManagementSystem.DTO.BookResponseDTO;
 import com.librarymanagementsystem.libraryManagementSystem.Entity.Book;
 import com.librarymanagementsystem.libraryManagementSystem.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +18,22 @@ public class BookController
     BookService bookService;
 
 
-    @PostMapping("/addBook")
-    public String addBook (@RequestBody Book book) throws Exception
+//    @PostMapping("/addBook")
+//    public String addBook (@RequestBody Book book) throws Exception
+//    {
+//        int authorId;
+//        try {
+//            authorId = bookService.addBook(book);
+//        }catch (Exception e) {
+//            throw new Exception(e.getMessage()+ " then Book not added anyway");
+//        }
+//        return "Book added Successfully for particular Author id: "+ authorId;
+//    }
+
+    @PostMapping("/addBookDTO")
+    public BookResponseDTO addBookDTO (@RequestBody BookRequestDTO bookRequestDTO)
     {
-        int authorId;
-        try {
-            authorId = bookService.addBook(book);
-        }catch (Exception e) {
-            throw new Exception(e.getMessage()+ " then Book not added anyway");
-        }
-        return "Book added Successfully for particular Author id: "+ authorId;
+        return bookService.addBookDTO(bookRequestDTO);
+
     }
 }

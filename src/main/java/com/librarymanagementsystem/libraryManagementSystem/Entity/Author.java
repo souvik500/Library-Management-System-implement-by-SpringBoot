@@ -22,13 +22,14 @@ public class Author
 
     private String name;
 
+    @Column(unique = true)
     private int mobile;
 
     private String email;
 
     /**
      * When any Author will come and register himself on this time Author did not write any book
-     * so, we make make an empty list first, then we create add API to inset book for particular
+     * so, we make an empty list first, then we create add API to inset book for particular
      * Author..
      */
     //parent to child join

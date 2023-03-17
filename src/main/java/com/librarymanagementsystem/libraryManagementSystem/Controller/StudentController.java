@@ -1,5 +1,6 @@
 package com.librarymanagementsystem.libraryManagementSystem.Controller;
 
+import com.librarymanagementsystem.libraryManagementSystem.DTO.StudentRequestDTO;
 import com.librarymanagementsystem.libraryManagementSystem.DTO.StudentResponseDTO;
 import com.librarymanagementsystem.libraryManagementSystem.DTO.StudentUpdateEmail_RequestDTO;
 import com.librarymanagementsystem.libraryManagementSystem.Entity.Student;
@@ -22,17 +23,24 @@ public class StudentController
         return student.getName() + " Student added Successfully";
     }
 
-//    @GetMapping("/findStudentByEmail/")
-//    public String  findStudentByEmail (@RequestParam("email") String emailId)
-//    {
-//        String name = studentService.findStudentByEmail(emailId);
-//        return "Student Name is: " + name + " for particular emailId: "+ emailId;
-//    }
-
-
-    @PutMapping("/updateMobileNo")
-    public StudentResponseDTO updateMobNo (@RequestBody StudentUpdateEmail_RequestDTO studentUpdateMobRequestDTO)
+    @PostMapping("/addStudentDTO")
+    public String  addStudentDto (@RequestBody StudentRequestDTO studentRequestDTO)
     {
-        return studentService.updateMobNo(studentUpdateMobRequestDTO);
+        studentService.addStudentDto(studentRequestDTO);
+        return studentRequestDTO.getName() + " Student added Successfully";
+    }
+
+    @GetMapping("/findStudentByEmail/")
+    public String  findStudentByEmail (@RequestParam("email") String emailId)
+    {
+        String name = studentService.findStudentByEmail(emailId);
+        return "Student Name is: " + name + " for particular emailId: "+ emailId;
+    }
+
+
+    @PutMapping("/updateEmail")
+    public StudentResponseDTO updateEmail (@RequestBody StudentUpdateEmail_RequestDTO studentUpdateMobRequestDTO)
+    {
+        return studentService.updateEmail(studentUpdateMobRequestDTO);
     }
 }

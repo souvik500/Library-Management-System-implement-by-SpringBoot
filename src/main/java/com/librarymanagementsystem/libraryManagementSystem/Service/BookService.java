@@ -1,7 +1,10 @@
 package com.librarymanagementsystem.libraryManagementSystem.Service;
 
+import com.librarymanagementsystem.libraryManagementSystem.DTO.BookRequestDTO;
+import com.librarymanagementsystem.libraryManagementSystem.DTO.BookResponseDTO;
 import com.librarymanagementsystem.libraryManagementSystem.Entity.Author;
 import com.librarymanagementsystem.libraryManagementSystem.Entity.Book;
+import com.librarymanagementsystem.libraryManagementSystem.Entity.LibraryCard;
 import com.librarymanagementsystem.libraryManagementSystem.Repository.AuthorRepository;
 import com.librarymanagementsystem.libraryManagementSystem.Repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,22 +21,50 @@ public class BookService
     @Autowired
     AuthorRepository authorRepository;
 
-    public int addBook(Book book) throws Exception
+//    public int addBook(Book book) throws Exception
+//    {
+//        Author author;
+//        try {
+//            author = authorRepository.findById(book.getAuthor().getId()).get();
+//        }
+//        catch (Exception e){
+//            throw new RuntimeException(e.getMessage()+ " Author is not Exists");
+//        }
+//
+//        List<Book> bookList = author.getBookList();
+//
+//        bookList.add(book);
+//
+//        bookRepository.save(book);
+//
+//        return author.getId();
+//    }
+
+    public BookResponseDTO addBookDTO (BookRequestDTO bookRequestDTO)
     {
-        Author author;
-        try {
-            author = authorRepository.findById(book.getAuthor().getId()).get();
-        }
-        catch (Exception e){
-            throw new RuntimeException(e.getMessage()+ " Author is not Exists");
-        }
+        Author author = authorRepository.findById(bookRequestDTO.getAuthorId()).get();
 
-        List<Book> bookList = author.getBookList();
+        Book book = new Book();
 
-        bookList.add(book);
+        book.setName(bookRequestDTO.getName());
+        book.setGenres(bookRequestDTO.getGenres());
+        book.setPrice(bookRequestDTO.getPrice());
 
-        bookRepository.save(book);
+        book.setIssued(false);
 
-        return author.getId();
+        book.setAuthor(author);
+        author.getBookList().add(book);
+
+//        LibraryCard lc = new LibraryCard();
+//        lc.setIssueBooks();
+
+        authorRepository.save(author);
+
+        BookResponseDTO bookResponseDTO = new BookResponseDTO();
+
+        bookResponseDTO.setName(book.getName());
+        bookResponseDTO.setPrice(book.getPrice());
+
+        return bookResponseDTO;
     }
 }

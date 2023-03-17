@@ -24,7 +24,7 @@ public class Student
     private int age;
 
     @Column(unique = true)
-    private String Email;
+    private String email;
 
     @Enumerated(EnumType.STRING)
     Department department;

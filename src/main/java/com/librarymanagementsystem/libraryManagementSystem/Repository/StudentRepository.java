@@ -14,7 +14,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer>{
      * @param email which given particular email id based on that Our ORM(Hibernate) implement that
      * @return List of Student Age in 2nd Method;
      */
-//    Student findByEmail (String email);
-//
-//    List<Student> findByAge (int age);
+    Student findByEmail (String email);
+
+    List<Student> findByAge (int age);
 }
