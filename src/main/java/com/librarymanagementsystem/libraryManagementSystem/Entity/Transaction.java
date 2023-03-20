@@ -17,7 +17,7 @@ public class Transaction
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int transactionNumber;
+    private String transactionNumber;
 
     private boolean isIssueOperation;
 
@@ -26,6 +26,8 @@ public class Transaction
 
     @CreationTimestamp
     private Date transactionDate;
+
+    private String message;
 
     //Relationship b/w child to parent(Book) of [many-one]
     @ManyToOne

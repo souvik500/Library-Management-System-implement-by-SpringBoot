@@ -10,6 +10,7 @@ import com.librarymanagementsystem.libraryManagementSystem.Repository.BookReposi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -55,8 +56,11 @@ public class BookService
         book.setAuthor(author);
         author.getBookList().add(book);
 
-//        LibraryCard lc = new LibraryCard();
-//        lc.setIssueBooks();
+        List<Book> bookList = new ArrayList<>();
+        bookList.add(book);
+
+        LibraryCard lc = new LibraryCard();
+        lc.setIssueBooks(bookList);
 
         authorRepository.save(author);
 
