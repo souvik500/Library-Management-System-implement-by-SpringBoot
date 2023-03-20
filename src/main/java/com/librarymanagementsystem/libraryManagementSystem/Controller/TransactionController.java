@@ -19,15 +19,15 @@ public class TransactionController
     TransactionService transactionService;
 
 
-    @PostMapping("/issueBookDTO")
-    public ResponseEntity<IssueBookResponseDTO> issueBook (@RequestBody IssueBookRequestDTO issueBookRequestDTO) throws Exception
+    @PostMapping("/issueBook")
+    public ResponseEntity issueBook (@RequestBody IssueBookRequestDTO issueBookRequestDTO) throws Exception
     {
         IssueBookResponseDTO issueBookResponseDTO;
         try {
             issueBookResponseDTO = transactionService.issueBook(issueBookRequestDTO);
         }
         catch (Exception e){
-            throw new RuntimeException(e.getMessage() + HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity (e.getMessage(),HttpStatus.NOT_ACCEPTABLE);
         }
 
         return new ResponseEntity<>(issueBookResponseDTO, HttpStatus.OK);

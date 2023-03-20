@@ -38,6 +38,7 @@ public class TransactionService
         Transaction transaction = new Transaction();
 
         transaction.setTransactionNumber(String.valueOf(UUID.randomUUID()));
+        transaction.setIssueOperation(true);
 //        List<Book> bookList = new ArrayList<>();
 
         LibraryCard libraryCard;
